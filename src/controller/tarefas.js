@@ -12,10 +12,10 @@ async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, ca
                 {
                     titulo: titulo,
                     dataPrevistaTermino: dataPrevistaTermino,
-                    descricao:descricao,
-                    concluido:concluido,
+                    descricao: descricao,
+                    concluido: concluido,
                     dataCriacao: dataCriacao,
-                    categoriaNome:categoriaNome
+                    categoriaNome: categoriaNome
                 });
             resolve({ data: response, code: 200 });
         } catch (err) {
@@ -25,7 +25,7 @@ async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, ca
     });
 }
 
-async function atualizarTarefa(id,titulo, dataPrevistaTermino, descricao, concluido) {
+async function atualizarTarefa(id, titulo, dataPrevistaTermino, descricao, concluido) {
     return new Promise(async (resolve, reject) => {
 
         const id = 1;
@@ -37,13 +37,13 @@ async function atualizarTarefa(id,titulo, dataPrevistaTermino, descricao, conclu
                 {
                     titulo: titulo,
                     dataPrevistaTermino: dataPrevistaTermino,
-                    descricao:descricao,
-                    concluido:concluido,
+                    descricao: descricao,
+                    concluido: concluido,
                     dataCriacao: dataCriacao
                 },
                 {
-                    where:{
-                        id:id
+                    where: {
+                        id: id
                     }
                 });
             resolve({ data: response, code: 200 });
@@ -54,7 +54,30 @@ async function atualizarTarefa(id,titulo, dataPrevistaTermino, descricao, conclu
     });
 }
 
+async function deletarTarefa(id) {
+    return new Promise(async (resolve, reject) => {
 
+        try {
+            const response = await tarefaModel.findOne({
+                where: {
+                    id: id
+                }
+            })
+
+            if (response) {
+                response.destroy()
+                resolve({ msg: "Tarefa deletada com sucesso", code: 200 })
+            }
+            else {
+                resolve({ msg: "Tarefa não encontrada", code: 200 })
+            }
+
+        } catch (err) {
+            console.log(err)
+            reject({ err: err, code: 500 });
+        }
+    });
+}
 
 
 
@@ -69,3 +92,8 @@ async function atualizarTarefa(id,titulo, dataPrevistaTermino, descricao, conclu
 // atualizarTarefa(1,"teste att",dataTeste,"sim",1,"Academic")
 // .then((responsta) => console.log(responsta))
 // .catch((err) => console.log("erro " +err))
+
+
+// deletarTarefa(1)
+// .then((r) => console.log(r))
+// .catch((e) => console.log(e))
