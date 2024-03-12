@@ -60,3 +60,5 @@ async function atualizarUsuario(nome, tema) {
         }
     });
 }
+
+module.exports = { criarUsuario, atualizarUsuario, recuperarUsuario }

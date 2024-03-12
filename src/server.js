@@ -2,12 +2,17 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 
+//import das rotas
+const rota_usuario = require("./routes/user")
+
 //Conf dos middleware
 
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
-app.use()
+app.use(express.json())
 
 //Conf das rotas
 
-express.listen(5500,()=> console.log(`Servidor aberto em: 5500`))
+app.use("",rota_usuario)
+
+app.listen(5500,()=> console.log(`Servidor aberto em: 5500`))
