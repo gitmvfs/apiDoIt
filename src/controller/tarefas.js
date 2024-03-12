@@ -1,6 +1,6 @@
 const tarefaModel = require("../models/tarefasModel");
 
-async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, categoriaNome) {
+async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, nomeCategoria) {
     return new Promise(async (resolve, reject) => {
 
         const id = 1;
@@ -15,7 +15,7 @@ async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, ca
                     descricao: descricao,
                     concluido: concluido,
                     dataCriacao: dataCriacao,
-                    categoriaNome: categoriaNome
+                    nomeCategoria: nomeCategoria
                 });
             resolve({ data: response, code: 200 });
         } catch (err) {
@@ -98,7 +98,7 @@ async function recuperarTarefaPelaCategoria(nomeCategoria) {
             const response = await tarefaModel.findAll(
                 {
                     where: {
-                        categoriaNome: nomeCategoria
+                        nomeCategoria: nomeCategoria
                     }
                 }
             )
@@ -110,29 +110,4 @@ async function recuperarTarefaPelaCategoria(nomeCategoria) {
     })
 }
 
-
-// const dataTeste = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
-// criarTarefa("teste",dataTeste,"sim",0,"Personal")
-// .then((responsta) => console.log(responsta))
-// .catch((err) => console.log("erro " +err))
-
-// const dataTeste = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
-// atualizarTarefa(3,"teste previous",dataTeste,"sim",1)
-// .then((responsta) => console.log(responsta))
-// .catch((err) => console.log("erro " +err))
-
-
-// deletarTarefa(1)
-// .then((r) => console.log(r))
-// .catch((e) => console.log(e))
-
-// recuperarTodasTarefas()
-// .then((r) => console.log(r[1]))
-// .catch((e) => console.log(e))
-
-// recuperarTarefaPelaCategoria("Academic")
-//     .then((r) => console.log(r))
-//     .catch((e) => console.log(e))
-
+module.exports = { criarTarefa, atualizarTarefa, deletarTarefa, recuperarTodasTarefas, recuperarTarefaPelaCategoria }

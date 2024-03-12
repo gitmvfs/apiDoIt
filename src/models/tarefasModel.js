@@ -28,7 +28,7 @@ const tarefaModel = sequelize.define('TAREFAS', {
         type: DataTypes.DATE,
         allowNull: false
     },
-    categoriaNome: {
+    nomeCategoria: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
