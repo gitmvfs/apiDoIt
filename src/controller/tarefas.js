@@ -28,7 +28,6 @@ async function criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, ca
 async function atualizarTarefa(id, titulo, dataPrevistaTermino, descricao, concluido) {
     return new Promise(async (resolve, reject) => {
 
-        const id = 1;
         try {
 
             const dataCriacao = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -79,17 +78,48 @@ async function deletarTarefa(id) {
     });
 }
 
+async function recuperarTodasTarefas() {
+    return new Promise(async (resolve, reject) => {
+
+        try {
+            const response = await tarefaModel.findAll()
+            resolve(response)
+        } catch (err) {
+            console.log(err)
+            reject({ err: err, code: 500 });
+        }
+    });
+}
+
+async function recuperarTarefaPelaCategoria(nomeCategoria) {
+    return new Promise(async (resolve, reject) => {
+
+        try {
+            const response = await tarefaModel.findAll(
+                {
+                    where: {
+                        categoriaNome: nomeCategoria
+                    }
+                }
+            )
+            resolve(response)
+        } catch (err) {
+            console.log(err)
+            reject({ err: err, code: 500 });
+        }
+    })
+}
 
 
 // const dataTeste = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-// criarTarefa("teste",dataTeste,"sim",0,"Academic")
+// criarTarefa("teste",dataTeste,"sim",0,"Personal")
 // .then((responsta) => console.log(responsta))
 // .catch((err) => console.log("erro " +err))
 
 // const dataTeste = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-// atualizarTarefa(1,"teste att",dataTeste,"sim",1,"Academic")
+// atualizarTarefa(3,"teste previous",dataTeste,"sim",1)
 // .then((responsta) => console.log(responsta))
 // .catch((err) => console.log("erro " +err))
 
@@ -97,3 +127,12 @@ async function deletarTarefa(id) {
 // deletarTarefa(1)
 // .then((r) => console.log(r))
 // .catch((e) => console.log(e))
+
+// recuperarTodasTarefas()
+// .then((r) => console.log(r[1]))
+// .catch((e) => console.log(e))
+
+// recuperarTarefaPelaCategoria("Academic")
+//     .then((r) => console.log(r))
+//     .catch((e) => console.log(e))
+
