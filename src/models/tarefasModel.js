@@ -42,10 +42,10 @@ const tarefaModel = sequelize.define('TAREFAS', {
 
 tarefaModel.sync()
     .then(() => {
-        console.log('Tabela USUARIO sincronizada com o banco de dados.');
+        console.log('Tabela Tarefa sincronizada com o banco de dados.');
     })
     .catch((error) => {
-        console.error('Erro ao sincronizar a tabela USUARIO:', error);
+        console.error('Erro ao sincronizar a tabela Tarefa:', error);
     });
 
 

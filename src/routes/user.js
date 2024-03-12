@@ -25,9 +25,9 @@ router.put("/usuario", async (req, res) => {
 
         const response = await criarUsuario(nome, tema)
 
-        response.data == 0 
-        ? res.json({ msg: "Erro ao atualizar usuario", code: 400, response }).status(400) 
-        : res.json({ msg: "Usuario atuallizado com sucesso", code: 200, response }).status(200)
+        response.data == 0
+            ? res.json({ msg: "Erro ao atualizar usuario", code: 400, response }).status(400)
+            : res.json({ msg: "Usuario atuallizado com sucesso", code: 200, response }).status(200)
     }
     catch (err) {
         console.log(err)
@@ -45,9 +45,9 @@ router.put("/usuario", async (req, res) => {
 
         const response = await atualizarUsuario(nome, tema)
 
-        response.data == 0 
-        ? res.json({ msg: "Erro ao atualizar usuario", code: 400, response }).status(400) 
-        : res.json({ msg: "Usuario atuallizado com sucesso", code: 200, response }).status(200)
+        response.data == 0
+            ? res.json({ msg: "Erro ao atualizar usuario", code: 400, response }).status(400)
+            : res.json({ msg: "Usuario atuallizado com sucesso", code: 200, response }).status(200)
     }
     catch (err) {
         console.log(err)
