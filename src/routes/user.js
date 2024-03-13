@@ -16,7 +16,7 @@ router.get("/usuario", async (req, res) => {
     }
 })
 
-router.put("/usuario", async (req, res) => {
+router.post("/usuario", async (req, res) => {
 
     try {
 

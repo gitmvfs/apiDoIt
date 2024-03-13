@@ -110,4 +110,46 @@ async function recuperarTarefaPelaCategoria(nomeCategoria) {
     })
 }
 
+function toogleTarefaConcluir(id) {
+
+    return new Promise(async (resolve, reject) => {
+        try {
+            await tarefaModel.findOne({  //Faz a primeira pesquisa para encontrar a tarefa
+                where: {
+                    id: id
+                }
+            })
+                .then(async (tarefa) => { // Caso a tarefa tenha sido encontrada ele compara se está true ou false
+                    let concluir = ""
+
+                    //Inverte o operador de true ou false
+                    tarefa.dataValues.concluido == true
+                        ? concluir = false
+                        : concluir = true
+
+
+                    const att = await tarefaModel.update(// atualiza o concluir
+                        {
+                            concluido: concluir,
+                        },
+                        {
+                            where: {
+                                id: id
+                            }
+                        })
+
+                    resolve(200)
+                })
+                .catch((err) => resolve(err))
+
+        }
+        catch (err) {
+            reject(err)
+        }
+    })
+
+}
+
+toogleTarefaConcluir(4)
+
 module.exports = { criarTarefa, atualizarTarefa, deletarTarefa, recuperarTodasTarefas, recuperarTarefaPelaCategoria }
