@@ -1,50 +1,4 @@
 # Do-it API Rotas
-
-&nbsp;
-## Primeiro Acesso
-
-| Parâmetro   | Tipo       | Descrição                                   |Requisição |
-| :---------- | :--------- | :------------------------------------------ | :---------|
-| `nome`      | `string` | **Obrigatório**. Nome do usuário | Body     |
-| `tema`      | `string` | **Obrigatório**. Tema visual da aplicação | Body     |
-
-
-&nbsp;
-## Categoria
-#### Retorna todas as categorias
-
-```http
-  GET /categoria/todas
-```
-
-#### Retorna a categoria pelo nome
-
-```http
-  GET /categoria
-```
-
-| Parâmetro   | Tipo       | Descrição                                   |Requisição |
-| :---------- | :--------- | :------------------------------------------ | :---------|
-| `nomeCategoria`      | `string` | **Obrigatório**. Nome da categoria | Query     |
-
-&nbsp;
-## Contagem
-
-#### Retorna a contagem do número de tarefas criadas
-
-```http
-  GET /contagem
-```
-
-&nbsp;
-## User
-  
-#### Retorna nome e tema do usuário
-
-```http
-  GET /usuario
-```
-&nbsp;
 ## Tarefa
 
 #### Cria uma nova tarefa
@@ -59,22 +13,37 @@
 | `descricao`      | `string` | Descrição da tarefa | body     |
 | `dataPrevistaTermino`      | `date` | Data para o termino da tarefa | body     |
 | `concluido`      | `bool` | Se a tarefa está ou não concluida | body     |
-| `fk_categoriaNome`      | `string` | Categoria a qual a tarefa pertence | body     |
+| `nomeCategoria`      | `string` | Categoria a qual a tarefa pertence | body     |
+
+#### Edita uma tarefa pelo id
+
+```http
+  PUT /tarefa/editar
+```
+| Parâmetro   | Tipo       | Descrição                                   |Requisição |
+| :---------- | :--------- | :------------------------------------------ | :---------|
+| `id`      | `string` | id da tarefa | body     |
+| `titulo`      | `string` | Titulo da tarefa | body     |
+| `descricao`      | `string` | Descrição da tarefa | body     |
+| `dataPrevistaTermino`      | `date` | Data para o termino da tarefa | body     |
+| `concluido`      | `bool` | Se a tarefa está ou não concluida | body     |
+| `nomeCategoria`      | `string` | Categoria a qual a tarefa pertence | body     |
+
+#### Deleta uma tarefa pelo id
+
+```http
+  DELETE /tarefa
+```
+| Parâmetro   | Tipo       | Descrição                                   |Requisição |
+| :---------- | :--------- | :------------------------------------------ | :---------|
+| `id`      | `string` | id da tarefa | body     |
+
 
 #### Recupera todas as tarefas
 
 ```http
   GET /tarefa
 ```
-
-#### Resgata uma tarefa pelo nome
-
-```http
-  GET /tarefa
-```
-| Parâmetro   | Tipo       | Descrição                                   |Requisição |
-| :---------- | :--------- | :------------------------------------------ | :---------|
-| `titulo`      | `string` | Titulo da tarefa | query     |
 
 #### Resgata as tarefas de uma categoria
 
@@ -94,26 +63,42 @@
 | :---------- | :--------- | :------------------------------------------ | :---------|
 | `id`      | `string` | id da tarefa | query     |
 
-#### Edita uma tarefa pelo id
+
+&nbsp;
+## User
+  
+#### Retorna nome e tema do usuário
 
 ```http
-  PUT /tarefa/editar
+  GET /usuario
+```
+#### Cria um novo usuario
+
+```http
+  post /usuario
 ```
 | Parâmetro   | Tipo       | Descrição                                   |Requisição |
 | :---------- | :--------- | :------------------------------------------ | :---------|
-| `id`      | `string` | id da tarefa | body     |
-| `titulo`      | `string` | Titulo da tarefa | body     |
-| `descricao`      | `string` | Descrição da tarefa | body     |
-| `dataPrevistaTermino`      | `date` | Data para o termino da tarefa | body     |
-| `concluido`      | `bool` | Se a tarefa está ou não concluida | body     |
-| `fk_categoriaNome`      | `string` | Categoria a qual a tarefa pertence | body     |
+| `nome`      | `string` | nome usuario | body     |
+| `tema`      | `string` | tema da aplicação | body     |
 
-#### Deleta uma tarefa pelo id
+#### Atualiza nome e tema do usuário
 
 ```http
-  DELETE /tarefa
+  put /usuario
 ```
 | Parâmetro   | Tipo       | Descrição                                   |Requisição |
 | :---------- | :--------- | :------------------------------------------ | :---------|
-| `id`      | `string` | id da tarefa | body     |
+| `nome`      | `string` | nome usuario | body     |
+| `tema`      | `string` | tema da aplicação | body     |
+
+
+&nbsp;
+## Contagem
+
+#### Retorna a contagem do número de tarefas criadas
+
+```http
+  GET /contagem
+```
 
