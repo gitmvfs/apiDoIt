@@ -18,5 +18,9 @@ app.use(express.json())
 app.use("", rota_usuario)
 app.use("", rota_tarefa)
 app.use("", rota_contagem)
+app.get("",(req,res) =>{
+
+    res.json({ApiStatus:"Ok" ,"link docs": "https://github.com/gitmvfs/apiDoIt" })
+})
 
 app.listen(5500, () => console.log(`Servidor aberto em: 5500`))
