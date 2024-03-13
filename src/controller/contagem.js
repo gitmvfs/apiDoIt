@@ -26,4 +26,10 @@ function contagemTarefasPorCategoria() {
 
 
 }
+const fun = async () => {
+    const response = await contagemTarefasPorCategoria()
 
+    console.log(response)
+}
+
+fun()
