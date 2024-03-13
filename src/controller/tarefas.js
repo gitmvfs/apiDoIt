@@ -152,4 +152,4 @@ function toogleTarefaConcluir(id) {
 
 toogleTarefaConcluir(4)
 
-module.exports = { criarTarefa, atualizarTarefa, deletarTarefa, recuperarTodasTarefas, recuperarTarefaPelaCategoria }
+module.exports = { criarTarefa, atualizarTarefa, deletarTarefa, recuperarTodasTarefas, recuperarTarefaPelaCategoria, toogleTarefaConcluir }

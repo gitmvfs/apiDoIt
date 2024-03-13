@@ -1,4 +1,4 @@
-const { recuperarTodasTarefas, recuperarTarefaPelaCategoria, criarTarefa, atualizarTarefa, deletarTarefa } = require("../controller/tarefas")
+const { recuperarTodasTarefas, recuperarTarefaPelaCategoria, criarTarefa, atualizarTarefa, deletarTarefa, toogleTarefaConcluir } = require("../controller/tarefas")
 
 const router = require("express").Router()
 
@@ -41,7 +41,7 @@ router.post("/tarefa", async (req, res) => {
 
         const response = await criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, nomeCategoria)
 
-        response.data == 0 | response.code != 200
+        !!response.data == 0
             ? res.json({ msg: "Erro ao criar tarefa", code: 400, response }).status(400)
             : res.json({ msg: "Tarefa criada com sucesso", code: 200, response }).status(200)
 
@@ -59,11 +59,10 @@ router.put("/tarefa", async (req, res) => {
     try {
         const { id, titulo, descricao, concluido } = req.body
         const dataPrevistaTermino = new Date(req.body.dataPrevistaTermino)
-        // concluido = new Boolean(concluido)
 
         const response = await atualizarTarefa(id, titulo, dataPrevistaTermino, descricao, concluido)
 
-        response.data == 0
+        !!response.data == 0
             ? res.json({ msg: "Erro ao atualizar tarefa", code: 400, response }).status(400)
             : res.json({ msg: "Tarefa atualizada com sucesso", code: 200, response }).status(200)
 
@@ -75,6 +74,26 @@ router.put("/tarefa", async (req, res) => {
 
 })
 
+router.put("/tarefa/concluir", async(req,res) => {
+    try {
+        const { id } = req.body
+
+        const response = await toogleTarefaConcluir(id)
+
+        console.log(response.data)
+        !!response.data == 0 
+            ? res.json({ msg: "Erro ao atualizar concluir tarefa", code: 400, response }).status(400)
+            : res.json({ msg: "Tarefa concluir atualizada com sucesso", code: 200, response }).status(200)
+
+    }
+    catch (err) {
+        res.json({ err: err, code: 500 }).status(500)
+
+    }
+
+
+})
+
 router.delete("/tarefa", async (req, res) => {
 
     try {
@@ -83,7 +102,7 @@ router.delete("/tarefa", async (req, res) => {
 
         const response = await deletarTarefa(id)
 
-        response.data == 0
+        !!response.data == 0
             ? res.json({ msg: "Erro ao deletar tarefa", code: 400, response }).status(400)
             : res.json({ msg: "Tarefa deletada com sucesso", code: 200, response }).status(200)
 
