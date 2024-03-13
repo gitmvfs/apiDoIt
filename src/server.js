@@ -23,4 +23,4 @@ app.get("",(req,res) =>{
     res.json({ApiStatus:"Ok" ,"link docs": "https://github.com/gitmvfs/apiDoIt" })
 })
 
-app.listen(5500, () => console.log(`Servidor aberto em: 5500`))
+app.listen(3000, () => console.log(`Servidor aberto em: 3000`))
