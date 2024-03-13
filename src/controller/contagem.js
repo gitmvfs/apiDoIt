@@ -1,7 +1,7 @@
 const tarefaModel = require("../models/tarefasModel");
 const { recuperarTarefaPelaCategoria } = require("./tarefas");
 
-function contagemTarefasPorCategoria() {
+function contagemTarefas() {
 
     return new Promise(async (resolve, reject) => {
         try {
@@ -26,10 +26,12 @@ function contagemTarefasPorCategoria() {
 
 
 }
-const fun = async () => {
-    const response = await contagemTarefasPorCategoria()
+// const fun = async () => {
+//     const response = await contagemTarefasPorCategoria()
 
-    console.log(response)
-}
+//     console.log(response)
+// }
 
-fun()
+// fun()
+
+module.exports = {contagemTarefas}
