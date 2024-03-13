@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const {resolve} = require("path")
+const dotenv = require("dotenv").config({path:resolve(__dirname,"../",".env")})
 
 //import das rotas
 const rota_usuario = require("./routes/user")
@@ -23,4 +25,8 @@ app.get("",(req,res) =>{
     res.json({ApiStatus:"Ok" ,"link docs": "https://github.com/gitmvfs/apiDoIt" })
 })
 
-app.listen(3000, () => console.log(`Servidor aberto em: 3000`))
+//Env
+
+const port = process.env.port || 3000
+
+app.listen(port, () => console.log(`Servidor aberto em: ${port}`))
