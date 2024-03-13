@@ -38,11 +38,10 @@ router.post("/tarefa", async (req, res) => {
     try {
         const { titulo, descricao, concluido, nomeCategoria } = req.body
         const dataPrevistaTermino = new Date(req.body.dataPrevistaTermino)
-        // concluido = new Boolean(concluido)
 
         const response = await criarTarefa(titulo, dataPrevistaTermino, descricao, concluido, nomeCategoria)
 
-        response.data == 0
+        response.data == 0 | response.code != 200
             ? res.json({ msg: "Erro ao criar tarefa", code: 400, response }).status(400)
             : res.json({ msg: "Tarefa criada com sucesso", code: 200, response }).status(200)
 
