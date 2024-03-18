@@ -98,7 +98,14 @@
 
 #### Retorna a contagem do número de tarefas criadas
 
+
 ```http
   GET /contagem
 ```
+## Frases
 
+#### Retorna uma frase aleatoria do arquivo xlsx
+
+```http
+  GET /frases
+```
