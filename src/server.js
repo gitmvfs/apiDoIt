@@ -8,6 +8,7 @@ const dotenv = require("dotenv").config({path:resolve(__dirname,"../",".env")})
 const rota_usuario = require("./routes/user")
 const rota_tarefa = require("./routes/tarefas")
 const rota_contagem = require("./routes/contagem")
+const rota_frase = require("./routes/frases")
 
 //Conf dos middleware
 
@@ -20,6 +21,7 @@ app.use(express.json())
 app.use("", rota_usuario)
 app.use("", rota_tarefa)
 app.use("", rota_contagem)
+app.use("",rota_frase)
 app.get("",(req,res) =>{
 
     res.json({ApiStatus:"Ok" ,"link docs": "https://github.com/gitmvfs/apiDoIt" })
